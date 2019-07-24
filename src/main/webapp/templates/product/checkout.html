@@ -49,6 +49,9 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                         Pay with Credit/Debit card
                     </button>
+                    <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
+                    <div id="paypal-container"></div>
+                    <script>paypal.Buttons().render('#paypal-container');</script>
                     <!-- The Modal -->
                     <div class="modal" id="myModal">
                         <div class="modal-dialog">
