@@ -1,9 +1,6 @@
 package com.codecool.shop.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class ShopCart {
     private static HashMap<Product, Integer> shoppingCart = new HashMap<>();
@@ -20,6 +17,14 @@ public class ShopCart {
 
     public static HashMap<Product, Integer> getShoppingCart() {
         return shoppingCart;
+    }
+
+    public static int numOfCartItems() {
+        int num = 0;
+        for (Integer product : shoppingCart.values()){
+            num += product;
+        }
+        return num;
     }
 
 

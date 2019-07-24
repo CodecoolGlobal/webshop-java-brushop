@@ -28,17 +28,18 @@ public class ProductController extends HttpServlet {
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
 
+        String IDToCart = req.getParameter("orderID");
+        if (IDToCart != null){
+            int productId = parseInt(IDToCart);
+            ShopCart.addToCart(ProductDaoMem.getInstance().find(productId));
+        }
+
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
         context.setVariable("category", productCategoryDataStore.find(1));
         context.setVariable("products", productDataStore.getBy(productCategoryDataStore.find(1)));
+        context.setVariable("numOfOrder", ShopCart.numOfCartItems());
 
-        String IDToCart = req.getParameter("productID");
-        if (IDToCart != null){
-            int productId = parseInt(IDToCart);
-            //kerdeses
-            ShopCart.addToCart(ProductDaoMem.getInstance().find(productId));
-        }
 
 
         engine.process("product/index.html", context, resp.getWriter());
