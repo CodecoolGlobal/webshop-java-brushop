@@ -10,7 +10,7 @@ public class ShopCart {
 
     ShopCart(){}
 
-    void addToCart(Product product){
+    public static void addToCart(Product product){
         if (getShoppingCart().keySet().contains(product)){
             getShoppingCart().put(product, numOfOrder(product) + 1);
         } else {
@@ -23,7 +23,7 @@ public class ShopCart {
     }
 
 
-    public Integer numOfOrder(Product product){
+    public static Integer numOfOrder(Product product){
         return getShoppingCart().get(product);
     }
 
