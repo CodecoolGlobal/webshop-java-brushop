@@ -23,4 +23,13 @@ public class CheckOut extends HttpServlet {
         engine.process("product/checkout.html", context, resp.getWriter());
 
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
+        WebContext context = new WebContext(req, resp, req.getServletContext());
+        engine.process("product/checkout.html", context, resp.getWriter());
+
+    }
 }
