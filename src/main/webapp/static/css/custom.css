@@ -60,3 +60,9 @@
 {
     margin: 0 0 11px;
 }
+
+.logo {
+    margin-top: -10%;
+    /*margin-bottom: ;*/
+    width: 100%;
+}
