@@ -35,6 +35,10 @@ public class ProductController extends HttpServlet {
         // params.put("products", productDataStore.getBy(productCategoryDataStore.find(1)));
         // context.setVariables(params);
         engine.process("product/index.html", context, resp.getWriter());
+        String supplier = req.getParameter("supplier");
+        if (supplier != null) {
+            System.out.println(supplier);
+        }
     }
 
 }
