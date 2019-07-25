@@ -27,7 +27,6 @@ public class ShopCart {
         return num;
     }
 
-
     public static Integer numOfOrder(Product product){
         return getShoppingCart().get(product);
     }
