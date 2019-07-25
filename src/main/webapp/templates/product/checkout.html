@@ -16,122 +16,138 @@
 <div class="row">
     <div class="col-75">
         <div class="container">
-            <form method="get">
-                <div class="row">
-                    <div class="col-50" id="billing-data">
-                        <h3>Billing Address</h3>
-                        <div id="fullname">
-                            <label for="fname" ><i class="fa fa-user"></i> Full Name</label>
-                        </div>
-                        <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
-                        <div id="email-title">
-                            <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                        </div>
-                        <input type="text" id="email" name="email" placeholder="john@example.com">
-                        <div id="adr-title">
-                            <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-                        </div>
-                        <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
-                        <div id="city-title">
-                            <label for="city"><i class="fa fa-institution"></i> City</label>
-                        </div>
-                        <input type="text" id="city" name="city" placeholder="New York">
-                        <div class="row">
-                            <div class="col-50">
-                                <div id="state-title">
-                                    <label for="state">State</label>
-                                </div>
-                                <input type="text" id="state" name="state" placeholder="NY">
+            <!--            <form method="post">-->
+            <div class="row">
+                <div class="col-50" id="billing-data">
+                    <h3>Billing Address</h3>
+                    <div id="fullname">
+                        <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+                    </div>
+                    <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
+                    <div id="email-title">
+                        <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                    </div>
+                    <input type="text" id="email" name="email" placeholder="john@example.com">
+                    <div id="adr-title">
+                        <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                    </div>
+                    <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
+                    <div id="city-title">
+                        <label for="city"><i class="fa fa-institution"></i> City</label>
+                    </div>
+                    <input type="text" id="city" name="city" placeholder="New York">
+                    <div class="row">
+                        <div class="col-50">
+                            <div id="state-title">
+                                <label for="state">State</label>
                             </div>
-                            <div class="col-50">
-                                <div id="zip-title">
-                                    <label for="zip">Zip</label>
-                                </div>
-                                <input type="text" id="zip" name="zip" placeholder="10001">
+                            <input type="text" id="state" name="state" placeholder="NY">
+                        </div>
+                        <div class="col-50">
+                            <div id="zip-title">
+                                <label for="zip">Zip</label>
                             </div>
+                            <input type="text" id="zip" name="zip" placeholder="10001">
                         </div>
                     </div>
-
                 </div>
-                <label>
-                    <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing</label>
-                <div class="container">
-                    <!-- Button to Open the Modal -->
-                    <button id="pay-with-credit-card-button" type="button" class="btn btn-primary" data-toggle="modal-disabled" data-target="#myModal">
-                        Pay with Credit/Debit card
-                    </button>
-                    <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
-                    <div id="paypal-container" class="disabled"></div>
-                    <input type="hidden" id="paypal-buttons-disabled" name="disabled">
-                    <script id="paypal-button">paypal.Buttons({
-                        onInit: function(data, actions) {
-                            // Disable the buttons
-                            //actions.disable();
-                            actions.enable();
 
-                            // if (document.getElementById("paypal-container").className == "enabled") {
-                            //     actions.enable();
-                            // }
-                        }
-                    }).render('#paypal-container');</script>
-                    <!-- The Modal -->
-                    <div class="modal" id="myModal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <!-- Modal body -->
-                                <div class="modal-body">
-                                    <div class="col-50">
-                                        <label for="fname" class="accepted-cards">Accepted Cards</label>
-                                        <div class="icon-container">
-                                            <i class="fa fa-cc-visa" style="color:navy;"></i>
-                                            <i class="fa fa-cc-amex" style="color:blue;"></i>
-                                            <i class="fa fa-cc-mastercard" style="color:red;"></i>
-                                            <i class="fa fa-cc-discover" style="color:orange;"></i>
-                                        </div>
+            </div>
+            <label>
+                <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing</label>
+            <div class="container">
+                <!-- Button to Open the Modal -->
+                <button id="pay-with-credit-card-button" type="button" class="btn btn-primary"
+                        data-toggle="modal-disabled" data-target="#myModal">
+                    Pay with Credit/Debit card
+                </button>
+                <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
+                <div id="paypal-container" class="disabled"></div>
+                <input type="hidden" id="paypal-buttons-disabled" name="disabled">
+                <script id="paypal-button">paypal.Buttons({
+                    onInit: function (data, actions) {
+                        // Disable the buttons
+                        //actions.disable();
+                        actions.enable();
+
+                        // if (document.getElementById("paypal-container").className == "enabled") {
+                        //     actions.enable();
+                        // }
+                    }
+                }).render('#paypal-container');</script>
+                <!-- The Modal -->
+                <div class="modal" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <div class="col-50">
+                                    <label for="fname" class="accepted-cards">Accepted Cards</label>
+                                    <div class="icon-container">
+                                        <i class="fa fa-cc-visa" style="color:navy;"></i>
+                                        <i class="fa fa-cc-amex" style="color:blue;"></i>
+                                        <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                                        <i class="fa fa-cc-discover" style="color:orange;"></i>
+                                    </div>
+                                    <div class="cardname-title">
                                         <label for="cname">Name on Card</label>
-                                        <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+                                    </div>
+                                    <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+                                    <div class="ccnum-title">
                                         <label for="ccnum">Credit card number</label>
-                                        <input type="text" id="ccnum" name="cardnumber"
-                                               placeholder="1111-2222-3333-4444" minlength="13" maxlength="19">
+                                    </div>
+                                    <input type="text" id="ccnum" name="cardnumber"
+                                           placeholder="1111-2222-3333-4444" minlength="13" maxlength="19">
+                                    <div class="expmonth-title">
                                         <label for="expmonth">Exp Month</label>
-                                        <input type="text" id="expmonth" name="expmonth" placeholder="September">
-                                        <div class="row">
-                                            <div class="col-50">
+                                    </div>
+                                    <input type="text" id="expmonth" name="expmonth" placeholder="September">
+                                    <div class="row">
+                                        <div class="col-50">
+                                            <div class="expyear-title">
                                                 <label for="expyear">Exp Year</label>
-                                                <input type="text" id="expyear" name="expyear" placeholder="2018">
                                             </div>
-                                            <div class="col-50">
+                                            <input type="text" id="expyear" name="expyear" placeholder="2018">
+                                        </div>
+                                        <div class="col-50">
+                                            <div class="cvv-title">
                                                 <label for="cvv">CVV</label>
-                                                <input type="text" id="cvv" name="cvv" placeholder="352">
                                             </div>
+                                            <input type="text" id="cvv" name="cvv" placeholder="352">
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Modal footer -->
-                                <div class="modal-footer">
-                                    <button id="modal-button" type="submit" class="btn btn-danger" data-dismiss="modal">Pay $999</button>
-                                </div>
+                            </div>
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button id="modal-button" type="submit-disabled" class="btn btn-danger"
+                                        data-dismiss="modal-disabled"
+                                        th:text="'Pay ' + ${sumOfProductPrice} + ' USD'"></button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
+            </div>
+            <!--            </form>-->
         </div>
     </div>
     <div class="col-25">
         <div class="container">
-            <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b th:text="${quantity}"></b></span></h4>
+            <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b
+                    th:text="${quantity}"></b></span></h4>
             <!--/*@thymesVar id="id" type=""*/-->
             <div th:each="entry : ${shopCart}">
+                <hr>
                 <p th:text="${entry.key.name}"></p>
                 <p><span th:text="${entry.key.price} + ' x' + ${entry.value}"></span></p>
             </div>
             <hr>
-            <p>Total <span class="price" style="color:black"><b th:text="${sumOfProductPrice}"></b></span></p>
+            <p><strong>Total </strong><span class="price" style="color:black"><b
+                    th:text="'' + ${sumOfProductPrice} + ' USD'"></b></span></p>
         </div>
     </div>
 </div>
-
+<div th:replace="footer.html :: copy"></div>
 </body>
 </html>
