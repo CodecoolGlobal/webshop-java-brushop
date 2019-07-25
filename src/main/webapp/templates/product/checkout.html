@@ -121,13 +121,14 @@
     </div>
     <div class="col-25">
         <div class="container">
-            <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b th:text="${shopCart.size()}"></b></span></h4>
+            <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b th:text="${quantity}"></b></span></h4>
             <!--/*@thymesVar id="id" type=""*/-->
             <div th:each="entry : ${shopCart}">
-                <p th:text="${entry.key.name} + ' x' + ${entry.value} + ' ' + ${entry.key.price}"></p>
+                <p th:text="${entry.key.name}"></p>
+                <p><span th:text="${entry.key.price} + ' x' + ${entry.value}"></span></p>
             </div>
             <hr>
-            <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
+            <p>Total <span class="price" style="color:black"><b th:text="${sumOfProductPrice}"></b></span></p>
         </div>
     </div>
 </div>

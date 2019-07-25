@@ -32,7 +32,6 @@ public class ProductController extends HttpServlet {
         if (IDToCart != null){
             int productId = parseInt(IDToCart);
             ShopCart.addToCart(ProductDaoMem.getInstance().find(productId));
-            System.out.println(ShopCart.getShoppingCart());
         }
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());

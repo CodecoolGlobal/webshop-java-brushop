@@ -27,9 +27,10 @@ public class CheckOut extends HttpServlet {
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
         context.setVariable("shopCart", ShopCart.getShoppingCart());
+        context.setVariable("quantity", ShopCart.quantity());
+        context.setVariable("sumOfProductPrice", ShopCart.sumOfProductPrice());
         engine.process("product/checkout.html", context, resp.getWriter());
 
-        System.out.println(ShopCart.getShoppingCart());
     }
 
     @Override
