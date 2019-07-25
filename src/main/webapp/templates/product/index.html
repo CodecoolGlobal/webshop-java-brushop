@@ -31,20 +31,11 @@
 
 <body>
 
-<div class="jumbotron text-center">
-    <img class="logo" src="/static/img/twitter_header_photo_2.png" alt="">
-</div>
-<div>
-    <form action="/checkout">
-        <button id="checkout-button">checkOut</button>
-    </form>
-
     <a href="#" class="notification">
         <span>Cart</span>
         <span class="badge" th:text="${numOfOrder}">0</span>
     </a>
 
-</div>
 <div class="container">
     <div class="card">
         <strong th:text="${category.name}">Category Title</strong>
