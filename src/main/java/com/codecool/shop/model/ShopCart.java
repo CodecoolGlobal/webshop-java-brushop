@@ -27,6 +27,29 @@ public class ShopCart {
         return num;
     }
 
+  
+    public static int quantity() {
+        int counter = 0;
+
+        for (Map.Entry<Product, Integer> entry : getShoppingCart().entrySet()) {
+            counter += entry.getValue();
+        }
+
+        return counter;
+    }
+  
+
+    public static float sumOfProductPrice() {
+        float price = 0;
+
+        for (Map.Entry<Product, Integer> entry : getShoppingCart().entrySet()) {
+            price += entry.getValue() * entry.getKey().getDefaultPrice();
+        }
+
+        return price ;
+    }
+  
+  
     public static Integer numOfOrder(Product product){
         return getShoppingCart().get(product);
     }

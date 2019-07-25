@@ -120,3 +120,7 @@ span.price {
 .billing-data-alert {
     color: red;
 }
+
+#cart-price {
+    margin-left: 4em;
+}
