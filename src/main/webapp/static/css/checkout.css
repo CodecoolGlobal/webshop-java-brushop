@@ -112,3 +112,11 @@ span.price {
     text-align: center;
     font-size: 2.5rem;
 }
+
+#paypal-container {
+    text-align: center;
+}
+
+.billing-data-alert {
+    color: red;
+}
