@@ -61,8 +61,18 @@
                         Pay with Credit/Debit card
                     </button>
                     <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
-                    <div id="paypal-container"></div>
-                    <script>paypal.Buttons().render('#paypal-container');</script>
+                    <div id="paypal-container" class="disabled"></div>
+                    <input type="hidden" id="paypal-buttons-disabled" name="disabled">
+                    <script id="paypal-button">paypal.Buttons({
+                        onInit: function(data, actions) {
+                            // Disable the buttons
+                            actions.disable();
+
+                            if (document.getElementById("paypal-container").className == "enabled") {
+                                actions.enable();
+                            }
+                        }
+                    }).render('#paypal-container');</script>
                     <!-- The Modal -->
                     <div class="modal" id="myModal">
                         <div class="modal-dialog">

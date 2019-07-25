@@ -1,7 +1,8 @@
 function addEventListenerOnModalButton() {
     let payWithCreditCardButton = document.getElementById("pay-with-credit-card-button");
-    payWithCreditCardButton.addEventListener("click", eventListenerOnPayWithCreditCardButton)
+    payWithCreditCardButton.addEventListener("click", eventListenerOnPayWithCreditCardButton);
 }
+
 
 
 function eventListenerOnPayWithCreditCardButton() {
@@ -64,6 +65,9 @@ function eventListenerOnPayWithCreditCardButton() {
     if (counter == 6) {
         let payWithCreditCardButton = document.getElementById("pay-with-credit-card-button");
         payWithCreditCardButton.dataset.toggle = 'modal';
+
+        let paypalContainer = document.getElementById("paypal-container");
+        paypalContainer.className = "enabled";
     }
 
 }
