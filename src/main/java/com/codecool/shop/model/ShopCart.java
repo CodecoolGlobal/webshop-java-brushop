@@ -27,6 +27,7 @@ public class ShopCart {
         return num;
     }
 
+  
     public static int quantity() {
         int counter = 0;
 
@@ -36,6 +37,7 @@ public class ShopCart {
 
         return counter;
     }
+  
 
     public static float sumOfProductPrice() {
         float price = 0;
@@ -46,7 +48,8 @@ public class ShopCart {
 
         return price ;
     }
-
+  
+  
     public static Integer numOfOrder(Product product){
         return getShoppingCart().get(product);
     }

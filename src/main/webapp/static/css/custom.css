@@ -99,3 +99,41 @@
     background: red;
     color: white;
 }
+
+
+#cart-logo {
+    /*margin-left: 97rem;*/
+    padding-left: 86em;
+    font-size: 18px !important;
+    margin-top: -2.5px;
+}
+
+.supplier {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.supplier:active {
+    border-color: transparent;
+}
+
+#supplier {
+    margin-left: 24px !important;
+}
+
+#category {
+    margin-left: 24px !important;
+}
+
+
+.badge {
+    font-size: 18px;
+    color: dodgerblue;
+}
+
+.nav-item {
+    margin-top: 4px;
+}
