@@ -24,6 +24,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <!-- End of Bootstrap components -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
 </head>
@@ -37,6 +38,12 @@
     <form action="/checkout">
         <button id="checkout-button">checkOut</button>
     </form>
+
+    <a href="#" class="notification">
+        <span>Cart</span>
+        <span class="badge" th:text="${numOfOrder}">0</span>
+    </a>
+
 </div>
 <div class="container">
     <div class="card">
@@ -56,7 +63,7 @@
                         <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
                     </div>
                     <div class="card-text">
-                        <a class="btn btn-success" href="#">Add to cart</a>
+                        <a class="btn btn-success" th:href="@{/(orderID=${prod.id})}">Add to cart</a>
                     </div>
                 </div>
             </div>
