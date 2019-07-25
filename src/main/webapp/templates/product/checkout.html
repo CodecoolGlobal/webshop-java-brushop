@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="/static/css/checkout.css">
+    <script type="text/javascript" src="/static/js/checkout_page.js" defer></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -15,27 +16,37 @@
 <div class="row">
     <div class="col-75">
         <div class="container">
-            <form action="/action_page.php">
-
+            <form method="get">
                 <div class="row">
-                    <div class="col-50">
+                    <div class="col-50" id="billing-data">
                         <h3>Billing Address</h3>
-                        <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+                        <div id="fullname">
+                            <label for="fname" ><i class="fa fa-user"></i> Full Name</label>
+                        </div>
                         <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
-                        <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                        <div id="email-title">
+                            <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                        </div>
                         <input type="text" id="email" name="email" placeholder="john@example.com">
-                        <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                        <div id="adr-title">
+                            <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                        </div>
                         <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
-                        <label for="city"><i class="fa fa-institution"></i> City</label>
+                        <div id="city-title">
+                            <label for="city"><i class="fa fa-institution"></i> City</label>
+                        </div>
                         <input type="text" id="city" name="city" placeholder="New York">
-
                         <div class="row">
                             <div class="col-50">
-                                <label for="state">State</label>
+                                <div id="state-title">
+                                    <label for="state">State</label>
+                                </div>
                                 <input type="text" id="state" name="state" placeholder="NY">
                             </div>
                             <div class="col-50">
-                                <label for="zip">Zip</label>
+                                <div id="zip-title">
+                                    <label for="zip">Zip</label>
+                                </div>
                                 <input type="text" id="zip" name="zip" placeholder="10001">
                             </div>
                         </div>
@@ -46,12 +57,23 @@
                     <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing</label>
                 <div class="container">
                     <!-- Button to Open the Modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                    <button id="pay-with-credit-card-button" type="button" class="btn btn-primary" data-toggle="modal-disabled" data-target="#myModal">
                         Pay with Credit/Debit card
                     </button>
                     <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
-                    <div id="paypal-container"></div>
-                    <script>paypal.Buttons().render('#paypal-container');</script>
+                    <div id="paypal-container" class="disabled"></div>
+                    <input type="hidden" id="paypal-buttons-disabled" name="disabled">
+                    <script id="paypal-button">paypal.Buttons({
+                        onInit: function(data, actions) {
+                            // Disable the buttons
+                            //actions.disable();
+                            actions.enable();
+
+                            // if (document.getElementById("paypal-container").className == "enabled") {
+                            //     actions.enable();
+                            // }
+                        }
+                    }).render('#paypal-container');</script>
                     <!-- The Modal -->
                     <div class="modal" id="myModal">
                         <div class="modal-dialog">
@@ -71,7 +93,7 @@
                                         <input type="text" id="cname" name="cardname" placeholder="John More Doe">
                                         <label for="ccnum">Credit card number</label>
                                         <input type="text" id="ccnum" name="cardnumber"
-                                               placeholder="1111-2222-3333-4444">
+                                               placeholder="1111-2222-3333-4444" minlength="13" maxlength="19">
                                         <label for="expmonth">Exp Month</label>
                                         <input type="text" id="expmonth" name="expmonth" placeholder="September">
                                         <div class="row">
@@ -88,9 +110,8 @@
                                 </div>
                                 <!-- Modal footer -->
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Pay $999</button>
+                                    <button id="modal-button" type="submit" class="btn btn-danger" data-dismiss="modal">Pay $999</button>
                                 </div>
-
                             </div>
                         </div>
                     </div>
