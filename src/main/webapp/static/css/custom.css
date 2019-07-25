@@ -100,8 +100,12 @@
     color: white;
 }
 
-#checkout-button {
-    margin-left: 95rem;
+
+#cart-logo {
+    /*margin-left: 97rem;*/
+    padding-left: 86em;
+    font-size: 18px !important;
+    margin-top: -2.5px;
 }
 
 .supplier {
@@ -122,4 +126,14 @@
 
 #category {
     margin-left: 24px !important;
+}
+
+
+.badge {
+    font-size: 18px;
+    color: dodgerblue;
+}
+
+.nav-item {
+    margin-top: 4px;
 }

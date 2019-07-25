@@ -48,32 +48,32 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <strong class="dropdown-item-nav-link disabled" id="supplier">Supplier</strong>
                     <br>
-                    <a class="dropdown-item" th:each="sup,iterStat : ${suppliers}" th:text="${sup.name}" th:href="@{/(supplierID=${sup.id})}">Supplier
+                    <a class="dropdown-item" th:each="sup,iterStat : ${suppliers}" th:text="${sup.name}"
+                       th:href="@{/(supplierID=${sup.id})}">Supplier
                         Name</a>
                     <div class="dropdown-divider"></div>
                     <strong class="dropdown-item-nav-link disabled" id="category">Category</strong>
                     <br>
-                    <a class="dropdown-item" th:each="cat,iterStat : ${categories}" th:text="${cat.name}" th:href="@{/(categoryID=${cat.id})}">Category
+                    <a class="dropdown-item" th:each="cat,iterStat : ${categories}" th:text="${cat.name}"
+                       th:href="@{/(categoryID=${cat.id})}">Category
                         Name</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/">Reset filters</a>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="checkout-button" href="/checkout">Checkout</a>
+                <a class="nav-link" id="cart-logo" href="/cart"><i class="fa fa-shopping-cart"><span class="badge" th:text="${numOfOrder}">0</span></i></a>
+            </li>
+            <li class="nav-item">
+                <div>
+                    <a class="nav-link" id="checkout-button" href="/checkout">Checkout</a>
+                </div>
             </li>
         </ul>
     </div>
 </nav>
-<div>
-    <a href="#" class="notification">
-        <span>Cart</span>
-        <span class="badge" th:text="${numOfOrder}">0</span>
-    </a>
-
-</div>
+<br><br>
 <div class="container">
-
     <div id="products" class="row">
         <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
             <div class="card">
@@ -94,9 +94,8 @@
             </div>
         </div>
     </div>
-
 </div>
-
+<br><br>
 <div th:replace="footer.html :: copy"></div>
 
 </body>
