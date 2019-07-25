@@ -99,3 +99,27 @@
     background: red;
     color: white;
 }
+
+#checkout-button {
+    margin-left: 95rem;
+}
+
+.supplier {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.supplier:active {
+    border-color: transparent;
+}
+
+#supplier {
+    margin-left: 24px !important;
+}
+
+#category {
+    margin-left: 24px !important;
+}
