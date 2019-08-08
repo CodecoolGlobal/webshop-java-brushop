@@ -9,6 +9,7 @@ import java.util.List;
 
 public class ProductCategoryDaoDb implements ProductCategoryDao {
     private static ProductCategoryDaoDb instance = null;
+    Connection connection = null;
 
     /* A private Constructor prevents any other class from instantiating.
      */
@@ -28,7 +29,6 @@ public class ProductCategoryDaoDb implements ProductCategoryDao {
     @Override
     public void add(ProductCategory category) {
 
-        Connection connection = null;
 
         String categoryDepartment = category.getDepartment();
         String categoryDescription = category.getDescription();
@@ -92,6 +92,13 @@ public class ProductCategoryDaoDb implements ProductCategoryDao {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (connection != null)
+                    connection.close();
+            } catch (SQLException se) {
+                System.out.println("Could not close connection");
+            }
         }
         return null;
     }
@@ -100,6 +107,17 @@ public class ProductCategoryDaoDb implements ProductCategoryDao {
 
     @Override
     public void remove(int id) {
+        final String removeQuery = "DELETE FROM product_categories WHERE id = ?";
+
+        try{
+            Connection connection = dbconnection.connect();
+            PreparedStatement preparedStatement = connection.prepareStatement(removeQuery);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -110,8 +128,7 @@ public class ProductCategoryDaoDb implements ProductCategoryDao {
 
     public static void main(String[] args) {
         ProductCategoryDaoDb astfgl = new ProductCategoryDaoDb();
-        ProductCategory myCat = new ProductCategory("thiasdsadrd", "aasdasdsd", "notasdasd");
-        ProductCategory myDog = new ProductCategory("doadadsggy", "huasdsky", "this iasdasds a husky duh");
-        astfgl.find(1);
+        astfgl.find(2);
+        astfgl.remove(3);
     }
 }
