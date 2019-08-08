@@ -28,14 +28,14 @@ public class ProductCategoryDaoDb implements ProductCategoryDao {
 
     @Override
     public void add(ProductCategory category) {
+        final String addStatement = "INSERT INTO product_categories (name, department, description)" +
+                "VALUES(?, ?, ?)";
 
 
         String categoryDepartment = category.getDepartment();
         String categoryDescription = category.getDescription();
         String categoryName = category.getName();
 
-        final String addStatement = "INSERT INTO product_categories (name, department, description)" +
-                "VALUES(?, ?, ?)";
 
         try {
             connection = dbconnection.connect();
@@ -83,7 +83,6 @@ public class ProductCategoryDaoDb implements ProductCategoryDao {
                 returnCateg.setId(resultId);
 
                 preparedStatement.close();
-                connection.close();
                 resultSet.close();
 
                 System.out.println(returnCateg.getDepartment());
@@ -117,8 +116,38 @@ public class ProductCategoryDaoDb implements ProductCategoryDao {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (connection != null)
+                    connection.close();
+            } catch (SQLException se) {
+                System.out.println("Could not close connection");
+            }
         }
 
+    }
+
+    // returns 0 if no category was found
+    public int getCategoryId(String categoryName){
+        final String findCategoryQuery = "SELECT id FROM product_categories WHERE name = ?";
+        int resultId;
+
+        try {
+            Connection connection = dbconnection.connect();
+            PreparedStatement preparedStatement = connection.prepareStatement(findCategoryQuery);
+            preparedStatement.setString(1, categoryName);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()){
+                resultId = resultSet.getInt("id");
+                return resultId;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } return 0;
     }
 
     @Override
@@ -126,9 +155,4 @@ public class ProductCategoryDaoDb implements ProductCategoryDao {
         return null;
     }
 
-    public static void main(String[] args) {
-        ProductCategoryDaoDb astfgl = new ProductCategoryDaoDb();
-        astfgl.find(2);
-        astfgl.remove(3);
-    }
 }

@@ -46,6 +46,10 @@ public class Product extends BaseModel {
         return productCategory;
     }
 
+    public int getProductCategoryId(){
+        return productCategory.getId();
+    }
+
     public void setProductCategory(ProductCategory productCategory) {
         this.productCategory = productCategory;
         this.productCategory.addProduct(this);

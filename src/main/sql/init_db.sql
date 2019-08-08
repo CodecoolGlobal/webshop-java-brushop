@@ -23,7 +23,8 @@ CREATE TABLE public.products
   id    serial NOT NULL,
   name text UNIQUE,
   category_id int,
-  supplier_id int
+  supplier_id int,
+  price varchar(255)
 );
 
 DROP TABLE IF EXISTS public.suppliers CASCADE;
@@ -98,10 +99,10 @@ INSERT INTO product_categories
 VALUES (2, 'tablet', 'second dep', 'livejasmin is not a porn site');
 
 INSERT INTO products
-VALUES (1, 'asuslaptop', 1, 2);
+VALUES (1, 'asuslaptop', 1, 2, '144 huf');
 
 INSERT INTO products
-VALUES (2, 'hiroshimanagasaki', 2, 1);
+VALUES (2, 'hiroshimanagasaki', 2, 1, 'ezerkecca');
 
 INSERT INTO carts
 VALUES (1, 2, 1, 2);
