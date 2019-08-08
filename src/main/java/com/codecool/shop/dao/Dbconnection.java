@@ -23,9 +23,4 @@ public class Dbconnection {
         return conn;
     }
 
-    public static void main(String[] args) {
-        Dbconnection myapp = new Dbconnection();
-        myapp.connect();
-    }
-
 }
