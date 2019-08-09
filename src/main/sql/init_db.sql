@@ -23,7 +23,8 @@ CREATE TABLE public.products
   id    serial NOT NULL,
   name text UNIQUE,
   category_id int,
-  supplier_id int
+  supplier_id int,
+  price varchar(255)
 );
 
 DROP TABLE IF EXISTS public.suppliers CASCADE;

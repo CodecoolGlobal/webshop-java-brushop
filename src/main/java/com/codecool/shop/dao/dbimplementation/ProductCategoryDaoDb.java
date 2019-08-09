@@ -9,6 +9,7 @@ import java.util.List;
 
 public class ProductCategoryDaoDb implements ProductCategoryDao {
     private static ProductCategoryDaoDb instance = null;
+    Connection connection = null;
 
     /* A private Constructor prevents any other class from instantiating.
      */
@@ -27,15 +28,14 @@ public class ProductCategoryDaoDb implements ProductCategoryDao {
 
     @Override
     public void add(ProductCategory category) {
+        final String addStatement = "INSERT INTO product_categories (name, department, description)" +
+                "VALUES(?, ?, ?)";
 
-        Connection connection = null;
 
         String categoryDepartment = category.getDepartment();
         String categoryDescription = category.getDescription();
         String categoryName = category.getName();
 
-        final String addStatement = "INSERT INTO product_categories (name, department, description)" +
-                "VALUES(?, ?, ?)";
 
         try {
             connection = dbconnection.connect();
@@ -83,7 +83,6 @@ public class ProductCategoryDaoDb implements ProductCategoryDao {
                 returnCateg.setId(resultId);
 
                 preparedStatement.close();
-                connection.close();
                 resultSet.close();
 
                 System.out.println(returnCateg);
@@ -92,6 +91,13 @@ public class ProductCategoryDaoDb implements ProductCategoryDao {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (connection != null)
+                    connection.close();
+            } catch (SQLException se) {
+                System.out.println("Could not close connection");
+            }
         }
         return null;
     }
@@ -100,7 +106,48 @@ public class ProductCategoryDaoDb implements ProductCategoryDao {
 
     @Override
     public void remove(int id) {
+        final String removeQuery = "DELETE FROM product_categories WHERE id = ?";
 
+        try{
+            Connection connection = dbconnection.connect();
+            PreparedStatement preparedStatement = connection.prepareStatement(removeQuery);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (connection != null)
+                    connection.close();
+            } catch (SQLException se) {
+                System.out.println("Could not close connection");
+            }
+        }
+
+    }
+
+    // returns 0 if no category was found
+    public int getCategoryId(String categoryName){
+        final String findCategoryQuery = "SELECT id FROM product_categories WHERE name = ?";
+        int resultId;
+
+        try {
+            Connection connection = dbconnection.connect();
+            PreparedStatement preparedStatement = connection.prepareStatement(findCategoryQuery);
+            preparedStatement.setString(1, categoryName);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()){
+                resultId = resultSet.getInt("id");
+                return resultId;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } return 0;
     }
 
     @Override
@@ -108,10 +155,4 @@ public class ProductCategoryDaoDb implements ProductCategoryDao {
         return null;
     }
 
-    public static void main(String[] args) {
-        ProductCategoryDaoDb astfgl = new ProductCategoryDaoDb();
-        ProductCategory myCat = new ProductCategory("thiasdsadrd", "aasdasdsd", "notasdasd");
-        ProductCategory myDog = new ProductCategory("doadadsggy", "huasdsky", "this iasdasds a husky duh");
-        astfgl.find(1);
-    }
 }
