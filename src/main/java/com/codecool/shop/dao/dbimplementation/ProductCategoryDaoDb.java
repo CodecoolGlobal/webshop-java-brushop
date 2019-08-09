@@ -86,7 +86,7 @@ public class ProductCategoryDaoDb implements ProductCategoryDao {
                 connection.close();
                 resultSet.close();
 
-                System.out.println(returnCateg.getDepartment());
+                System.out.println(returnCateg);
                 return returnCateg;
             }
 
