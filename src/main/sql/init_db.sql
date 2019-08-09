@@ -30,7 +30,8 @@ DROP TABLE IF EXISTS public.suppliers CASCADE;
 CREATE TABLE public.suppliers
 (
   id    serial NOT NULL,
-  name text UNIQUE
+  name text UNIQUE,
+  description varchar(255)
 );
 
 DROP TABLE IF EXISTS public.carts CASCADE;
@@ -85,11 +86,11 @@ ALTER TABLE ONLY public.carts
 -- VALUES (3, 'adsasd', 'nemasd', 'igen@nem.hu');
 --
 --
--- INSERT INTO suppliers
--- VALUES (1, 'huavej');
+-- INSERT INTO suppliers (name, description)
+-- VALUES ('huavej', 'electronics');
 --
--- INSERT INTO suppliers
--- VALUES (2, 'simisami');
+-- INSERT INTO suppliers (name, description)
+-- VALUES ('simisami', 'something');
 --
 -- INSERT INTO product_categories
 -- VALUES (1, 'laptop', 'first dep', 'this is something');

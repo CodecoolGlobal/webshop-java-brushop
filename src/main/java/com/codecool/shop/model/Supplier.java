@@ -19,6 +19,8 @@ public class Supplier extends BaseModel {
         return this.products;
     }
 
+
+
     public void addProduct(Product product) {
         this.products.add(product);
     }
