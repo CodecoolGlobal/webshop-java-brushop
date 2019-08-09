@@ -155,3 +155,21 @@
 .payment-was-successful {
     color: green;
 }
+
+#registration-content {
+    text-align: center;
+}
+
+#already-have-account {
+    color: blue;
+}
+
+#already-have-account:hover {
+    color: red;
+}
+
+.username, .email, .password, .confirm-password {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #aaa;
+}

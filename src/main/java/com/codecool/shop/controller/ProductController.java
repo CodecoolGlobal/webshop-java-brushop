@@ -3,12 +3,17 @@ package com.codecool.shop.controller;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.SupplierDao;
+import com.codecool.shop.dao.UserDao;
+import com.codecool.shop.dao.dbimplementation.UserDaoDb;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.ShopCart;
+import com.codecool.shop.model.User;
+import com.codecool.shop.password.BCrypt;
+import com.codecool.shop.password.BCryptHashing;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -28,6 +33,54 @@ public class ProductController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ProductDao productDataStore = ProductDaoMem.getInstance();
+        SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
+        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+
+        String IDToCart = req.getParameter("orderID");
+        if (IDToCart != null){
+            int productId = parseInt(IDToCart);
+            ShopCart.addToCart(ProductDaoMem.getInstance().find(productId));
+        }
+
+        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
+        WebContext context = new WebContext(req, resp, req.getServletContext());
+        context.setVariable("categories", productCategoryDataStore.getAll());
+        context.setVariable("products", productDataStore.getAll());
+        context.setVariable("suppliers", supplierDataStore.getAll());
+        context.setVariable("numOfOrder", ShopCart.numOfCartItems());
+
+
+        if (req.getParameter("supplierID") != null) {
+            context.setVariable("products", productDataStore.getBy(supplierDataStore.find(parseInt(req.getParameter("supplierID")))));
+        }
+
+        if (req.getParameter("categoryID") != null) {
+            context.setVariable("products", productDataStore.getBy(productCategoryDataStore.find(parseInt(req.getParameter("categoryID")))));
+        }
+
+
+        engine.process("product/index.html", context, resp.getWriter());
+//        String supplier = req.getParameter("supplier");
+//        if (supplier != null) {
+//            System.out.println(supplier);
+//        }
+    }
+
+
+
+//          context.setVariable("category", productCategoryDataStore.find(1));
+//          context.setVariable("products", productDataStore.getBy(productCategoryDataStore.find(1)));
+
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        BCryptHashing bcrypt = new BCryptHashing(req.getParameter("password"));
+        User user = new User(req.getParameter("username"), req.getParameter("email"), bcrypt.getGeneratedSecuredPasswordHash());
+        UserDaoDb userDaoDb = new UserDaoDb();
+        userDaoDb.add(user);
+
+
         ProductDao productDataStore = ProductDaoMem.getInstance();
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
