@@ -22,5 +22,4 @@ public class Dbconnection {
 
         return conn;
     }
-
 }
