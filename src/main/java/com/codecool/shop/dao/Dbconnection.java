@@ -8,8 +8,8 @@ public class Dbconnection {
     static final String url = "jdbc:postgresql://localhost:5432/codecoolshop";
 
     //  Database credentials
-    private final String user = "Kris";
-    private final String password = "";
+    private final String user = "vitya";
+    private final String password = "610507";
 
     public Connection connect() {
         Connection conn = null;

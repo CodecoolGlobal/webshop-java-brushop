@@ -75,38 +75,38 @@ ALTER TABLE ONLY public.carts
     ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE;
 
 
-INSERT INTO users
-VALUES (1, 'kiscsavo', 'lofaszjozsi', 'nagya@om.hu');
-
-INSERT INTO users
-VALUES (2, 'nagycsavo', 'beluka', 'hozentroger@gmail.com');
-
-INSERT INTO users
-VALUES (3, 'adsasd', 'nemasd', 'igen@nem.hu');
-
-
-INSERT INTO suppliers
-VALUES (1, 'huavej');
-
-INSERT INTO suppliers
-VALUES (2, 'simisami');
-
-INSERT INTO product_categories
-VALUES (1, 'laptop', 'first dep', 'this is something');
-
-INSERT INTO product_categories
-VALUES (2, 'tablet', 'second dep', 'livejasmin is not a porn site');
-
-INSERT INTO products
-VALUES (1, 'asuslaptop', 1, 2);
-
-INSERT INTO products
-VALUES (2, 'hiroshimanagasaki', 2, 1);
-
-INSERT INTO carts
-VALUES (1, 2, 1, 2);
-
-INSERT INTO carts
-VALUES (3, 1, 1, 2);
+-- INSERT INTO users
+-- VALUES (1, 'kiscsavo', 'lofaszjozsi', 'nagya@om.hu');
+--
+-- INSERT INTO users
+-- VALUES (2, 'nagycsavo', 'beluka', 'hozentroger@gmail.com');
+--
+-- INSERT INTO users
+-- VALUES (3, 'adsasd', 'nemasd', 'igen@nem.hu');
+--
+--
+-- INSERT INTO suppliers
+-- VALUES (1, 'huavej');
+--
+-- INSERT INTO suppliers
+-- VALUES (2, 'simisami');
+--
+-- INSERT INTO product_categories
+-- VALUES (1, 'laptop', 'first dep', 'this is something');
+--
+-- INSERT INTO product_categories
+-- VALUES (2, 'tablet', 'second dep', 'livejasmin is not a porn site');
+--
+-- INSERT INTO products
+-- VALUES (1, 'asuslaptop', 1, 2);
+--
+-- INSERT INTO products
+-- VALUES (2, 'hiroshimanagasaki', 2, 1);
+--
+-- INSERT INTO carts
+-- VALUES (1, 2, 1, 2);
+--
+-- INSERT INTO carts
+-- VALUES (3, 1, 1, 2);
 
 
